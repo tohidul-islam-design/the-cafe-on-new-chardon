@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Cafe on New Chardon | Order & Reviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Yellowtail&family=Oswald:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .script-font {
+            font-family: 'Yellowtail', cursive;
+        }
+
+        /* Neon Logo Styles */
+        .neon-yellow-text {
+            color: #fef08a;
+            text-shadow: 0 0 2px #ca8a04;
+        }
+        
+        .neon-blue-border {
+            box-shadow: 0 -1px 4px #22d3ee, inset 0 1px 4px #22d3ee;
+            border-color: #67e8f9;
+        }
+
+        .neon-pink-border {
+            box-shadow: 0 1px 4px #f472b6, inset 0 -1px 4px #f472b6;
+            border-color: #f472b6;
+        }
+
+        /* Custom Scrollbar */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Animations */
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .animate-pop {
+            animation: pop 0.2s ease-in-out;
+        }
+
+        /* Star Rating */
+        .star-rating input { display: none; }
+        .star-rating label {
+            color: #ddd;
+            float: right;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #fbbf24; 
+        }
+
+        /* Carousel Styles */
+        .carousel-slide {
+            min-width: 100%;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        /* Remove number input arrows */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 pb-24 md:pb-0">
+
+    <!-- Header / Brand -->
+    <header class="bg-gray-900/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Compact Neon Logo -->
+            <a href="#" class="flex items-center group gap-3">
+                <div class="relative flex flex-col items-center justify-center h-10 w-20">
+                    <div class="absolute top-0 w-full h-full rounded-[50%] border-t-2 border-l border-r border-transparent border-t-cyan-400 neon-blue-border opacity-90 scale-y-75 translate-y-1"></div>
+                    <div class="absolute bottom-0 w-full h-full rounded-[50%] border-b-2 border-l border-r border-transparent border-b-pink-500 neon-pink-border opacity-90 scale-y-75 -translate-y-1"></div>
+                    <div class="z-10 text-center transform -rotate-2">
+                        <span class="script-font text-xl neon-yellow-text block leading-none">The Cafe</span>
+                    </div>
+                </div>
+                <div class="hidden sm:block leading-tight">
+                    <span class="block text-white font-bold uppercase text-sm tracking-wide">The Cafe</span>
+                    <span class="block text-gray-400 text-xs">on New Chardon</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-10">
+                <nav class="flex items-center gap-8 text-sm font-medium tracking-wide">
+                    <span class="text-gray-400 hover:text-white transition duration-300 cursor-default">About Us</span>
+                    <span class="text-gray-400 hover:text-white transition duration-300 cursor-default">Our Stores</span>
+                    <a href="#reviews" class="text-gray-400 hover:text-white transition duration-300">Reviews</a>
+                    <a href="reservation.html" class="text-gray-400 hover:text-white transition duration-300">Reserve Table</a>
+                </nav>
+                
+                <div class="h-5 w-px bg-gray-700"></div>
+
+                <div class="flex items-center gap-6">
+                    <a href="#" class="text-gray-900 bg-white hover:bg-gray-200 px-6 py-2.5 rounded-full text-sm font-bold transition duration-300 shadow-md">Login</a>
+                    
+                    <!-- Cart Icon (Desktop) -->
+                    <button onclick="toggleSidebarCart()" class="relative p-2 text-gray-400 hover:text-white transition group">
+                        <i class="fas fa-shopping-bag text-xl group-hover:scale-110 transition-transform"></i>
+                        <span id="desktop-cart-count" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform scale-0 transition-transform duration-200 border border-gray-900 shadow-sm">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center gap-4">
+                <!-- Cart Icon (Mobile) -->
+                <button onclick="toggleSidebarCart()" class="relative p-2 text-gray-300 hover:text-white transition">
+                    <i class="fas fa-shopping-bag text-xl"></i>
+                    <span id="mobile-cart-badge-header" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform scale-0 transition-transform duration-200">0</span>
+                </button>
+                <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Dropdown -->
+        <div id="mobile-nav" class="hidden md:hidden bg-gray-900 border-t border-gray-800 absolute w-full left-0 top-full shadow-2xl z-40">
+            <div class="flex flex-col p-6 space-y-6">
+                <span onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg cursor-default">About Us</span>
+                <span onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg cursor-default">Our Stores</span>
+                <a href="#reviews" onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg">Reviews</a>
+                <a href="reservation.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Reserve Table</a>
+                <div class="border-t border-gray-800 pt-6 mt-2">
+                    <a href="#" class="text-center w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-200 transition block">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Carousel Section -->
+    <div class="relative bg-gray-900 text-white overflow-hidden shadow-2xl group h-[500px] sm:h-[600px]">
+        
+        <!-- Carousel Track -->
+        <div id="carousel-track" class="flex h-full transition-transform duration-500 ease-out">
+            
+            <!-- Slide 1: Steak Bomb -->
+            <div class="carousel-slide relative min-w-full">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                <div class="relative max-w-6xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
+                    <span class="bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 animate-pulse shadow-lg">Boston's Best Kept Secret</span>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 brand-font leading-tight drop-shadow-lg">
+                        The Legendary <br/><span class="text-yellow-400">Steak Bomb</span>
+                    </h1>
+                    <p class="text-gray-100 text-lg md:text-2xl mb-8 max-w-lg font-light drop-shadow-md">
+                        Mushrooms, peppers, onions & cheese. <br class="hidden sm:block">Huge portions. Unbeatable prices.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="document.getElementById('steak-subs').scrollIntoView({behavior: 'smooth'})" class="bg-white text-gray-900 font-bold py-3.5 px-8 rounded-full hover:bg-gray-100 transition transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
+                            Order Now <i class="fas fa-arrow-right text-red-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2: Breakfast -->
+            <div class="carousel-slide relative min-w-full">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1525351484163-7529414395d8?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                <div class="relative max-w-6xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
+                    <span class="bg-yellow-500 text-gray-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-lg">Start Your Morning Right</span>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 brand-font leading-tight drop-shadow-lg">
+                        Bacon & Cheese <br/><span class="text-yellow-400">Omelet</span>
+                    </h1>
+                    <p class="text-gray-100 text-lg md:text-2xl mb-8 max-w-lg font-light drop-shadow-md">
+                        Served with home-style fries and toast. <br class="hidden sm:block">The perfect way to fuel your day.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="document.getElementById('steak-subs').scrollIntoView({behavior: 'smooth'})" class="bg-white text-gray-900 font-bold py-3.5 px-8 rounded-full hover:bg-gray-100 transition transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
+                            Order Now <i class="fas fa-arrow-right text-red-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Burgers -->
+            <div class="carousel-slide relative min-w-full">
+                <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
+                <div class="relative max-w-6xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
+                    <span class="bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-lg">Hot Off The Grill</span>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-4 brand-font leading-tight drop-shadow-lg">
+                        Classic <br/><span class="text-yellow-400">Cheeseburger</span>
+                    </h1>
+                    <p class="text-gray-100 text-lg md:text-2xl mb-8 max-w-lg font-light drop-shadow-md">
+                        Juicy, cheesy, and delicious. <br class="hidden sm:block">Served on a bulkie roll with fresh toppings.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="document.getElementById('steak-subs').scrollIntoView({behavior: 'smooth'})" class="bg-white text-gray-900 font-bold py-3.5 px-8 rounded-full hover:bg-gray-100 transition transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
+                            Order Now <i class="fas fa-arrow-right text-red-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
+            <button onclick="goToSlide(0)" class="w-3 h-3 rounded-full bg-white transition-opacity opacity-100 indicator"></button>
+            <button onclick="goToSlide(1)" class="w-3 h-3 rounded-full bg-white transition-opacity opacity-50 indicator"></button>
+            <button onclick="goToSlide(2)" class="w-3 h-3 rounded-full bg-white transition-opacity opacity-50 indicator"></button>
+        </div>
+
+        <!-- Arrows -->
+        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-sm transition hidden md:flex">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center backdrop-blur-sm transition hidden md:flex">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <!-- Category Navigation (Sticky) -->
+    <nav id="category-nav" class="bg-white/95 backdrop-blur-sm border-b sticky top-[68px] z-40 shadow-sm overflow-x-auto hide-scrollbar">
+        <div class="max-w-6xl mx-auto flex space-x-3 px-4 py-3 min-w-max">
+            <!-- Updated default active state for Steak Subs (Pill Style) -->
+            <a href="#steak-subs" class="bg-gray-900 text-white shadow-md rounded-full px-5 py-2 font-medium whitespace-nowrap text-sm uppercase tracking-wide transition-all">Steak Subs</a>
+            <a href="#sandwiches" class="text-gray-500 hover:bg-gray-100 hover:text-gray-900 rounded-full px-5 py-2 font-medium whitespace-nowrap text-sm uppercase tracking-wide transition-all">Sandwiches</a>
+            <a href="#grill" class="text-gray-500 hover:bg-gray-100 hover:text-gray-900 rounded-full px-5 py-2 font-medium whitespace-nowrap text-sm uppercase tracking-wide transition-all">From the Grill</a>
+            <a href="#chicken" class="text-gray-500 hover:bg-gray-100 hover:text-gray-900 rounded-full px-5 py-2 font-medium whitespace-nowrap text-sm uppercase tracking-wide transition-all">Chicken</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
+        
+        <div class="grid lg:grid-cols-3 gap-10">
+            
+            <!-- Menu Column -->
+            <div class="lg:col-span-2 space-y-16">
+                
+                <!-- Section: Steak Subs -->
+                <section id="steak-subs" class="scroll-mt-40">
+                    <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Steak Subs</h2>
+                        <span class="text-gray-400 text-sm pb-1 font-medium">Hot & Fresh</span>
+                    </div>
+                    <!-- Updated container to flex col for list style -->
+                    <div class="flex flex-col gap-4" id="steak-list">
+                        <!-- Items injected via JS -->
+                    </div>
+                </section>
+
+                <!-- Section: Sandwiches -->
+                <section id="sandwiches" class="scroll-mt-40">
+                     <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Sandwiches</h2>
+                         <span class="text-gray-400 text-sm pb-1 font-medium">Deli Classics</span>
+                    </div>
+                    <div class="flex flex-col gap-4" id="sandwich-list"></div>
+                </section>
+
+                <!-- Section: Grill -->
+                <section id="grill" class="scroll-mt-40">
+                     <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                        <h2 class="text-3xl font-bold text-gray-900 brand-font">From the Grill</h2>
+                         <span class="text-gray-400 text-sm pb-1 font-medium">Burgers & More</span>
+                    </div>
+                    <div class="flex flex-col gap-4" id="grill-list"></div>
+                </section>
+
+                <!-- Section: Chicken -->
+                <section id="chicken" class="scroll-mt-40">
+                     <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Chicken</h2>
+                        <span class="text-gray-400 text-sm pb-1 font-medium">Served on Bulkie or Onion Roll</span>
+                    </div>
+                    <div class="flex flex-col gap-4" id="chicken-list"></div>
+                </section>
+
+            </div>
+
+            <!-- Desktop Cart Sidebar (Sticky) -->
+            <div class="hidden lg:block col-span-1">
+                <div class="sticky top-32 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+                    <div class="bg-gray-900 p-5 text-white flex justify-between items-center">
+                        <h3 class="font-bold text-lg brand-font tracking-wide">Your Order</h3>
+                        <span class="bg-white/20 text-xs px-2 py-1 rounded">Pickup</span>
+                    </div>
+                    
+                    <div id="sidebar-cart-items" class="p-5 space-y-4 max-h-[calc(100vh-400px)] overflow-y-auto">
+                        <div class="text-center text-gray-400 py-10 flex flex-col items-center">
+                            <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-3">
+                                <i class="fas fa-utensils text-gray-300 text-xl"></i>
+                            </div>
+                            <p class="text-sm">Your cart is empty</p>
+                            <p class="text-xs text-gray-400 mt-1">Start adding items!</p>
+                        </div>
+                    </div>
+                    
+                    <div id="desktop-cart-footer" class="p-5 bg-gray-50 border-t space-y-3 hidden">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Subtotal</span>
+                            <span class="font-bold" id="sidebar-subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-600">Tax (7%)</span>
+                            <span class="font-bold" id="sidebar-tax">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-xl font-bold pt-3 border-t border-gray-200">
+                            <span>Total</span>
+                            <span class="text-gray-900" id="sidebar-total">$0.00</span>
+                        </div>
+                        <button onclick="toggleSidebarCart()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-red-200 transition transform active:scale-95 mt-2">
+                            Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="py-16 border-t scroll-mt-20">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Customer Reviews</h2>
+                        <div class="flex items-center gap-2 mt-2">
+                            <div class="flex text-yellow-400 text-sm">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <span class="text-gray-500 text-sm font-medium">4.8 (120+ Reviews)</span>
+                        </div>
+                    </div>
+                    <button onclick="openReviewModal()" class="bg-gray-900 hover:bg-gray-800 text-white font-medium py-3 px-8 rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
+                        <i class="fas fa-pen"></i> Write a Review
+                    </button>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6" id="reviews-grid">
+                    <!-- Static Reviews -->
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-700 font-bold">J</div>
+                                <div>
+                                    <p class="font-bold text-sm">James D.</p>
+                                    <p class="text-xs text-gray-400">2 days ago</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">"Best value in the city. The Steak Bomb is actually massive. I couldn't finish it in one sitting."</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                        <div class="flex justify-between items-start mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold">S</div>
+                                <div>
+                                    <p class="font-bold text-sm">Sarah M.</p>
+                                    <p class="text-xs text-gray-400">1 week ago</p>
+                                </div>
+                            </div>
+                            <div class="flex text-yellow-400 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed">"Love the old school vibe. The staff is always super friendly even when it's busy."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-12 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="brand-font text-2xl text-white mb-4">The Cafe on New Chardon</h2>
+            <p class="text-sm mb-6">Serving the West End since forever.</p>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+            <p class="text-xs text-gray-600">&copy; 2024 The Cafe on New Chardon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky Cart Bar -->
+    <div id="mobile-cart-bar" class="fixed bottom-0 left-0 w-full bg-white border-t shadow-[0_-4px_20px_rgba(0,0,0,0.1)] p-4 md:hidden z-50 transform translate-y-full transition-transform duration-300 safe-bottom">
+        <div class="flex justify-between items-center gap-4">
+            <div class="flex flex-col">
+                <span class="text-[10px] text-gray-500 uppercase font-bold tracking-wider">Total</span>
+                <span id="mobile-total-price" class="text-xl font-bold text-gray-900">$0.00</span>
+            </div>
+            <button onclick="toggleSidebarCart()" class="flex-1 bg-gray-900 text-white font-bold py-3.5 rounded-xl shadow-lg flex justify-center items-center gap-2">
+                <span>View Order</span>
+                <span id="mobile-cart-count" class="bg-white/20 px-2 py-0.5 rounded text-xs">0</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Unified Cart & Checkout Sidebar (Replaces Mobile Modal & Payment Modal) -->
+    <div id="cart-sidebar" class="fixed inset-0 bg-black/60 z-[60] hidden flex justify-end items-stretch backdrop-blur-sm transition-opacity opacity-0">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col transform transition-transform translate-x-full duration-300">
+            <!-- Header -->
+            <div class="p-5 border-b flex justify-between items-center bg-gray-50">
+                <h3 class="font-bold text-lg brand-font">Your Order</h3>
+                <button onclick="toggleSidebarCart()" class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full hover:bg-gray-300 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Body (Items + Summary + Tips) -->
+            <div class="flex-1 overflow-y-auto p-5 scrollbar-hide">
+                <!-- Items List -->
+                <div id="modal-cart-items" class="space-y-4"></div>
+                
+                <!-- Details (Hidden when empty) -->
+                <div id="cart-content-details" class="hidden">
+                    <!-- Divider -->
+                    <div class="border-t border-gray-100 my-6"></div>
+
+                    <!-- Financials -->
+                    <div class="space-y-3 mb-8">
+                        <p class="text-xs text-gray-500 uppercase tracking-wide font-bold mb-2">Summary</p>
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal">$0.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>Tax (7%)</span>
+                            <span id="cart-tax">$0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Tip Section -->
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-900 font-bold mb-3 flex items-center gap-2">
+                            <i class="fas fa-heart text-red-500"></i> Add a Tip
+                        </p>
+                        <div class="grid grid-cols-4 gap-2 mb-2">
+                            <button onclick="setTip(0)" class="tip-btn border rounded-lg py-2 text-xs font-medium hover:bg-gray-50 transition" data-tip="0">None</button>
+                            <button onclick="setTip(15)" class="tip-btn border rounded-lg py-2 text-xs font-medium hover:bg-gray-50 transition bg-gray-900 text-white border-gray-900" data-tip="15">15%</button>
+                            <button onclick="setTip(18)" class="tip-btn border rounded-lg py-2 text-xs font-medium hover:bg-gray-50 transition" data-tip="18">18%</button>
+                            <button onclick="setTip(20)" class="tip-btn border rounded-lg py-2 text-xs font-medium hover:bg-gray-50 transition" data-tip="20">20%</button>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500 px-1">
+                            <span>Tip Amount:</span>
+                            <span id="cart-tip-amount" class="font-medium">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer (Pay Button) - Hidden when empty -->
+            <div id="cart-footer" class="p-5 border-t bg-white safe-bottom shadow-[0_-4px_20px_rgba(0,0,0,0.05)] hidden">
+                 <div class="flex justify-between text-xl font-bold mb-4 items-end">
+                    <span class="text-sm font-medium text-gray-500">Total</span>
+                    <span class="text-2xl text-gray-900" id="cart-total">$0.00</span>
+                </div>
+                <button onclick="completeOrder()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 flex justify-center items-center gap-2">
+                    <span>Pay & Place Order</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Form Modal -->
+    <div id="review-modal" class="fixed inset-0 bg-black/70 z-[70] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all scale-100">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold brand-font">Write a Review</h3>
+                <button onclick="closeReviewModal()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form onsubmit="submitReview(event)">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                    <input type="text" id="review-name" required class="w-full border-gray-300 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none" placeholder="John Doe">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Rating</label>
+                    <div class="star-rating flex flex-row-reverse justify-end gap-1 text-2xl">
+                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars"><i class="fas fa-star"></i></label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star"><i class="fas fa-star"></i></label>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Your Review</label>
+                    <textarea id="review-message" required rows="3" class="w-full border-gray-300 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-yellow-400 focus:border-transparent outline-none" placeholder="What did you order? How was it?"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-gray-900 text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/80 z-[80] hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-8 text-center transform scale-100 animate-pop">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
+                <i class="fas fa-check text-3xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold mb-2 brand-font">Order Confirmed!</h2>
+            <p class="text-gray-600 mb-6 text-sm">Your order has been sent to the kitchen. It will be ready in ~15 minutes.</p>
+            
+            <div class="bg-gray-50 p-4 rounded-xl mb-6 text-left border border-gray-100">
+                <p class="text-[10px] text-gray-500 uppercase tracking-wide font-bold mb-1">Pickup Location</p>
+                <p class="font-bold text-gray-900 text-sm">The Cafe on New Chardon</p>
+                <p class="text-xs text-gray-500">25 New Chardon St, Boston</p>
+            </div>
+
+            <button onclick="closeSuccessModal()" class="w-full bg-gray-900 text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition">
+                Back to Menu
+            </button>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script>
+        // Menu Data with Images
+        const menuData = {
+            steak: [
+                { id: 's1', name: "Plain Steak", price: 9.35, image: "https://images.unsplash.com/photo-1619860860774-1e2e17343432?q=80&w=600&auto=format&fit=crop" },
+                { id: 's2', name: "Cheese Steak", price: 10.45, image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=600&auto=format&fit=crop" },
+                { id: 's3', name: "Pepper Steak", price: 10.45, image: "https://images.unsplash.com/photo-1504973960431-1c46b84542d5?q=80&w=600&auto=format&fit=crop" },
+                { id: 's4', name: "Onion Steak", price: 10.45, image: "https://images.unsplash.com/photo-1565259468949-92db033dc006?q=80&w=600&auto=format&fit=crop" },
+                { id: 's5', name: "Mushroom Steak", price: 10.45, image: "https://images.unsplash.com/photo-1565259468949-92db033dc006?q=80&w=600&auto=format&fit=crop" },
+                { id: 's6', name: "Steak Bomb", desc: "Mushrooms, pepper, onions & cheese", price: 12.35, popular: true, image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?q=80&w=600&auto=format&fit=crop" }
+            ],
+            sandwiches: [
+                { id: 'd1', name: "Oven Roasted Turkey", price: 8.90, image: "https://images.unsplash.com/photo-1553909489-cd47e3b7e525?q=80&w=600&auto=format&fit=crop" },
+                { id: 'd2', name: "Turkey Bacon", price: 10.30, image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?q=80&w=600&auto=format&fit=crop" },
+                { id: 'd3', name: "Ham & Cheese", price: 8.90, image: "https://images.unsplash.com/photo-1475090169767-40ed8d18f67d?q=80&w=600&auto=format&fit=crop" },
+                { id: 'd4', name: "Tuna Salad", price: 8.60, image: "https://images.unsplash.com/photo-1630982998633-c827c1d739c9?q=80&w=600&auto=format&fit=crop" },
+                { id: 'd5', name: "Chicken Salad", price: 8.60, image: "https://images.unsplash.com/photo-1509722747041-616f39b57569?q=80&w=600&auto=format&fit=crop" },
+                { id: 'd6', name: "Crab Salad", price: 8.60, image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=600&auto=format&fit=crop" },
+                { id: 'd7', name: "Egg Salad", price: 8.60, image: "https://images.unsplash.com/photo-1563293822-1b6a22f37c4d?q=80&w=600&auto=format&fit=crop" }
+            ],
+            grill: [
+                { id: 'g1', name: "Hamburger", price: 7.85, image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g2', name: "Cheeseburger", price: 8.95, popular: true, image: "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g3', name: "Hot Dog", price: 4.55, image: "https://images.unsplash.com/photo-1612392062631-94dd85fa2dd8?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g4', name: "BLT", price: 6.75, image: "https://images.unsplash.com/photo-1601314619379-3c32eb67e725?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g5', name: "Grilled Cheese", price: 4.85, image: "https://images.unsplash.com/photo-1528736235302-52922dfa4551?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g6', name: "Grilled Cheese & Tomato", price: 6.35, image: "https://images.unsplash.com/photo-1528736235302-52922dfa4551?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g7', name: "Grilled Cheese & Bacon", price: 8.45, image: "https://images.unsplash.com/photo-1627993418520-22c7a9df28e7?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g8', name: "Grilled Ham & Cheese", price: 8.45, image: "https://images.unsplash.com/photo-1528736235302-52922dfa4551?q=80&w=600&auto=format&fit=crop" },
+                { id: 'g9', name: "Tuna Melt", price: 8.45, image: "https://images.unsplash.com/photo-1536521642388-441263f88a61?q=80&w=600&auto=format&fit=crop" }
+            ],
+            chicken: [
+                { id: 'c1', name: "Grilled Chicken", price: 9.75, image: "https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=600&auto=format&fit=crop" },
+                { id: 'c2', name: "Buffalo Chicken", price: 9.75, image: "https://images.unsplash.com/photo-1626082927389-d6a369331310?q=80&w=600&auto=format&fit=crop" },
+                { id: 'c3', name: "Teriyaki Chicken", price: 9.75, image: "https://images.unsplash.com/photo-1588168333986-5078d3ae3976?q=80&w=600&auto=format&fit=crop" },
+                { id: 'c4', name: "BBQ Chicken", price: 9.75, image: "https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?q=80&w=600&auto=format&fit=crop" },
+                { id: 'c5', name: "Chicken Cordon Bleu", desc: "Ham, Swiss & honey mustard", price: 10.50, image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=600&auto=format&fit=crop" }
+            ]
+        };
+
+        // Helper to flatten menu data for easy lookup
+        const allItems = [
+            ...menuData.steak,
+            ...menuData.sandwiches,
+            ...menuData.grill,
+            ...menuData.chicken
+        ];
+
+        // State
+        let cart = {}; 
+        let currentTipPercent = 15;
+        let orderSubtotal = 0;
+        let orderTax = 0;
+        let currentSlide = 0;
+        const totalSlides = 3;
+        let slideInterval;
+
+        // Render Menu
+        function renderMenu() {
+            renderSection('steak-list', menuData.steak);
+            renderSection('sandwich-list', menuData.sandwiches);
+            renderSection('grill-list', menuData.grill);
+            renderSection('chicken-list', menuData.chicken);
+        }
+
+        function renderSection(elementId, items) {
+            const container = document.getElementById(elementId);
+            container.className = "flex flex-col gap-4";
+            
+            container.innerHTML = items.map(item => `
+                <div id="card-${item.id}" class="bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row gap-4 hover:shadow-md transition-all duration-300 group">
+                    <div class="relative w-full sm:w-28 h-40 sm:h-28 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
+                        ${item.popular ? '<span class="absolute top-2 left-2 text-[10px] bg-yellow-400 text-yellow-900 font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide">Popular</span>' : ''}
+                    </div>
+                    
+                    <div class="flex-1 flex flex-col justify-between">
+                        <div class="flex justify-between items-start gap-4">
+                            <div>
+                                <h3 class="font-bold text-gray-900 text-lg leading-tight group-hover:text-red-700 transition-colors">${item.name}</h3>
+                                ${item.desc ? `<p class="text-sm text-gray-500 mt-1 leading-relaxed line-clamp-2">${item.desc}</p>` : ''}
+                            </div>
+                            <span class="hidden sm:block font-bold text-lg text-gray-900">$${item.price.toFixed(2)}</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center mt-3 sm:mt-auto">
+                            <span class="sm:hidden font-bold text-lg text-gray-900">$${item.price.toFixed(2)}</span>
+                            
+                            <div class="hidden sm:block flex-1"></div>
+
+                            <button onclick="addToCart('${item.id}')" class="bg-gray-900 hover:bg-red-700 text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all duration-300 active:scale-95 shadow-md group-hover:shadow-lg">
+                                <span class="text-sm font-bold">Add</span>
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- Carousel Logic ---
+        function updateSlidePosition() {
+            const track = document.getElementById('carousel-track');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update Indicators
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((dot, index) => {
+                dot.classList.toggle('opacity-100', index === currentSlide);
+                dot.classList.toggle('opacity-50', index !== currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlidePosition();
+            resetInterval();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlidePosition();
+            resetInterval();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlidePosition();
+            resetInterval();
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlidePosition();
+            }, 5000); // 5 seconds
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startSlideShow();
+        }
+
+        startSlideShow();
+
+
+        // --- Sidebar/Modal Logic ---
+        function toggleSidebarCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            const content = sidebar.querySelector('div');
+            
+            if (sidebar.classList.contains('hidden')) {
+                // Open
+                sidebar.classList.remove('hidden');
+                void sidebar.offsetWidth; // Trigger reflow
+                sidebar.classList.remove('opacity-0');
+                content.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; 
+                updateCartTotals(); // Ensure totals are fresh
+            } else {
+                // Close
+                sidebar.classList.add('opacity-0');
+                content.classList.add('translate-x-full');
+                setTimeout(() => {
+                    sidebar.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+
+        function startOrdering() {
+            const mobileSidebar = document.getElementById('cart-sidebar');
+            // Close the sidebar if it's the overlay (mobile style)
+            if (mobileSidebar && !mobileSidebar.classList.contains('hidden')) {
+                toggleSidebarCart(); 
+            }
+            // Scroll to the top of the menu
+            const menu = document.getElementById('steak-subs');
+            if(menu) menu.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- Cart Logic ---
+        function addToCart(id) {
+            const item = allItems.find(i => i.id === id);
+            if (!item) return;
+
+            if (cart[id]) {
+                cart[id].qty++;
+            } else {
+                cart[id] = { 
+                    name: item.name, 
+                    price: item.price, 
+                    qty: 1
+                };
+            }
+            updateCartUI();
+            
+            // Visual feedback - Updated to Red to match theme
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            
+            // Apply Red styling instead of Green
+            btn.classList.add('bg-red-700', 'text-white');
+            btn.classList.remove('bg-gray-900', 'hover:bg-red-700');
+            btn.innerHTML = '<span class="text-sm font-bold">Added</span> <i class="fas fa-check text-xs"></i>';
+            
+            setTimeout(() => {
+                // Revert styles
+                btn.classList.remove('bg-red-700', 'text-white');
+                btn.classList.add('bg-gray-900', 'hover:bg-red-700');
+                btn.innerHTML = originalHTML;
+            }, 800);
+        }
+
+        function removeFromCart(cartId) {
+            if (cart[cartId]) {
+                cart[cartId].qty--;
+                if (cart[cartId].qty <= 0) delete cart[cartId];
+                updateCartUI();
+            }
+        }
+
+        function plusCartItem(cartId) {
+            if (cart[cartId]) {
+                cart[cartId].qty++;
+                updateCartUI();
+            }
+        }
+
+        function updateCartUI() {
+            const items = Object.entries(cart);
+            const totalQty = items.reduce((sum, [_, item]) => sum + item.qty, 0);
+            orderSubtotal = items.reduce((sum, [_, item]) => sum + (item.price * item.qty), 0);
+            orderTax = orderSubtotal * 0.07;
+            
+            // Toggle visibility of details based on cart content
+            const cartContentDetails = document.getElementById('cart-content-details');
+            const cartFooter = document.getElementById('cart-footer');
+            const desktopCartFooter = document.getElementById('desktop-cart-footer');
+
+            if (items.length > 0) {
+                if(cartContentDetails) cartContentDetails.classList.remove('hidden');
+                if(cartFooter) cartFooter.classList.remove('hidden');
+                if(desktopCartFooter) desktopCartFooter.classList.remove('hidden');
+            } else {
+                if(cartContentDetails) cartContentDetails.classList.add('hidden');
+                if(cartFooter) cartFooter.classList.add('hidden');
+                if(desktopCartFooter) desktopCartFooter.classList.add('hidden');
+            }
+
+            // Update Badges
+            const badges = [document.getElementById('desktop-cart-count'), document.getElementById('mobile-cart-count'), document.getElementById('mobile-cart-badge-header')];
+            badges.forEach(b => {
+                if(b) {
+                    b.innerText = totalQty;
+                    b.classList.remove('scale-0');
+                    b.classList.add('animate-pop');
+                    setTimeout(() => b.classList.remove('animate-pop'), 200);
+                }
+            });
+
+            // Update Sticky Sidebar UI (Desktop only)
+            if(document.getElementById('sidebar-subtotal')) {
+                document.getElementById('sidebar-subtotal').innerText = `$${orderSubtotal.toFixed(2)}`;
+                document.getElementById('sidebar-tax').innerText = `$${orderTax.toFixed(2)}`;
+                document.getElementById('sidebar-total').innerText = `$${(orderSubtotal + orderTax).toFixed(2)}`;
+            }
+            
+            // Update Mobile Sticky Bar
+            const mobileBar = document.getElementById('mobile-cart-bar');
+            if(document.getElementById('mobile-total-price')) {
+                document.getElementById('mobile-total-price').innerText = `$${(orderSubtotal + orderTax).toFixed(2)}`;
+            }
+
+            // Update Active State on Cards
+            document.querySelectorAll('[id^="card-"]').forEach(card => {
+                const id = card.id.replace('card-', '');
+                if (cart[id]) {
+                    card.classList.remove('border-gray-100', 'bg-white');
+                    card.classList.add('border-red-600', 'bg-red-50', 'ring-1', 'ring-red-600');
+                } else {
+                    card.classList.add('border-gray-100', 'bg-white');
+                    card.classList.remove('border-red-600', 'bg-red-50', 'ring-1', 'ring-red-600');
+                }
+            });
+
+            // Generate HTML for lists
+            const generateCartHTML = (compact = false) => {
+                if (items.length === 0) return `
+                    <div class="text-center text-gray-500 py-12 flex flex-col items-center justify-center h-full min-h-[300px]">
+                        <div class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6 animate-pop">
+                             <i class="fas fa-shopping-basket text-4xl text-gray-300"></i>
+                        </div>
+                        <p class="font-bold text-gray-900 text-xl mb-2">Your cart is empty</p>
+                        <p class="text-sm text-gray-500 mb-8 max-w-[200px] leading-relaxed">Looks like you haven't added anything to your cart yet.</p>
+                        <button onclick="startOrdering()" class="bg-gray-900 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-800 transition transform hover:-translate-y-1">
+                            Start Ordering
+                        </button>
+                    </div>`;
+
+                return items.map(([cartId, item]) => `
+                    <div class="flex justify-between items-center py-3 border-b border-gray-100 last:border-0">
+                        <div class="flex-1">
+                            <div class="font-bold text-sm text-gray-900">${item.name}</div>
+                            <div class="text-xs text-gray-500 flex items-center gap-2 mt-0.5">
+                                <span>$${item.price.toFixed(2)}</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3 bg-gray-50 rounded-lg px-2 py-1 border border-gray-200">
+                            <button onclick="removeFromCart('${cartId}')" class="text-gray-400 hover:text-red-600 w-5 h-5 flex items-center justify-center transition"><i class="fas fa-minus text-[10px]"></i></button>
+                            <span class="text-sm font-bold w-4 text-center text-gray-800">${item.qty}</span>
+                            <button onclick="plusCartItem('${cartId}')" class="text-gray-400 hover:text-green-600 w-5 h-5 flex items-center justify-center transition"><i class="fas fa-plus text-[10px]"></i></button>
+                        </div>
+                    </div>
+                `).join('');
+            };
+
+            const sidebar = document.getElementById('sidebar-cart-items');
+            if(sidebar) sidebar.innerHTML = generateCartHTML();
+            
+            const modalBody = document.getElementById('modal-cart-items');
+            if(modalBody) modalBody.innerHTML = generateCartHTML();
+
+            // Mobile Bar Visibility
+            if (mobileBar) {
+                if (totalQty > 0) {
+                    mobileBar.classList.remove('translate-y-full');
+                } else {
+                    mobileBar.classList.add('translate-y-full');
+                }
+            }
+            
+            updateCartTotals(); // Recalculate totals with tips
+        }
+
+        // --- Tip & Total Logic (Unified) ---
+        function setTip(percent) {
+            currentTipPercent = percent;
+            document.querySelectorAll('.tip-btn').forEach(btn => {
+                if(parseInt(btn.dataset.tip) === percent) {
+                    btn.classList.add('bg-gray-900', 'text-white', 'border-gray-900');
+                    btn.classList.remove('bg-white', 'text-gray-800', 'border-gray-300');
+                } else {
+                    btn.classList.remove('bg-gray-900', 'text-white', 'border-gray-900');
+                    btn.classList.add('bg-white', 'text-gray-800', 'border-gray-300');
+                }
+            });
+            updateCartTotals();
+        }
+
+        function updateCartTotals() {
+            const tipAmount = orderSubtotal * (currentTipPercent / 100);
+            const total = orderSubtotal + orderTax + tipAmount;
+
+            // Update Sidebar values
+            if(document.getElementById('cart-subtotal')) document.getElementById('cart-subtotal').innerText = `$${orderSubtotal.toFixed(2)}`;
+            if(document.getElementById('cart-tax')) document.getElementById('cart-tax').innerText = `$${orderTax.toFixed(2)}`;
+            if(document.getElementById('cart-tip-amount')) document.getElementById('cart-tip-amount').innerText = `$${tipAmount.toFixed(2)}`;
+            if(document.getElementById('cart-total')) document.getElementById('cart-total').innerText = `$${total.toFixed(2)}`;
+        }
+
+        function completeOrder() {
+            if (Object.keys(cart).length === 0) return;
+            toggleSidebarCart(); // Close sidebar
+            setTimeout(() => {
+                document.getElementById('success-modal').classList.remove('hidden');
+            }, 300);
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            cart = {};
+            currentTipPercent = 15;
+            setTip(15); 
+            updateCartUI();
+        }
+
+        // --- Review Logic ---
+        function openReviewModal() {
+            document.getElementById('review-modal').classList.remove('hidden');
+        }
+
+        function closeReviewModal() {
+            document.getElementById('review-modal').classList.add('hidden');
+        }
+
+        function submitReview(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('review-name');
+            const reviewInput = document.getElementById('review-message');
+            
+            if (!nameInput || !reviewInput) {
+                console.error("Form inputs not found");
+                return;
+            }
+
+            const name = nameInput.value;
+            const review = reviewInput.value;
+            
+            const grid = document.getElementById('reviews-grid');
+            const newCard = document.createElement('div');
+            newCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-gray-100 border-l-4 border-l-green-500 animate-pop";
+            newCard.innerHTML = `
+                <div class="flex justify-between items-start mb-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center text-white font-bold">${name.charAt(0)}</div>
+                        <div>
+                            <p class="font-bold text-sm">${name}</p>
+                            <p class="text-xs text-gray-400">Just now</p>
+                        </div>
+                    </div>
+                    <div class="flex text-yellow-400 text-xs">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm leading-relaxed">"${review}"</p>
+            `;
+            grid.prepend(newCard);
+
+            closeReviewModal();
+            e.target.reset();
+            alert("Thanks for your review!");
+        }
+
+        // --- Mobile Menu Logic ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-nav');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // --- Sidebar Cart Logic (Proxy for Modal) ---
+        function toggleSidebarCart() {
+            toggleMobileCartModal();
+        }
+
+        // --- Mobile Modal Logic ---
+        function toggleMobileCartModal() {
+            const modal = document.getElementById('cart-sidebar');
+            const content = modal.querySelector('div');
+            
+            if (modal.classList.contains('hidden')) {
+                // Open
+                modal.classList.remove('hidden');
+                void modal.offsetWidth; // Trigger reflow
+                modal.classList.remove('opacity-0');
+                content.classList.remove('translate-x-full');
+                document.body.style.overflow = 'hidden'; 
+                updateCartTotals(); // Ensure totals are fresh
+            } else {
+                // Close
+                modal.classList.add('opacity-0');
+                content.classList.add('translate-x-full');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }, 300);
+            }
+        }
+
+        // Active Category Scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['steak-subs', 'sandwiches', 'grill', 'chicken'];
+            // Updated Selector to fix collision with Main Header
+            const navLinks = document.querySelectorAll('#category-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    if (rect.top <= 200) current = section;
+                }
+            });
+
+            navLinks.forEach(link => {
+                // Reset to inactive pill style
+                link.classList.remove('bg-gray-900', 'text-white', 'shadow-md');
+                link.classList.add('text-gray-500', 'hover:bg-gray-100', 'hover:text-gray-900');
+                
+                // Apply active pill style (Updated to Dark)
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('bg-gray-900', 'text-white', 'shadow-md');
+                    link.classList.remove('text-gray-500', 'hover:bg-gray-100', 'hover:text-gray-900');
+                }
+            });
+        });
+
+        // Initialize
+        renderMenu();
+        updateCartUI(); // Initial call to render empty state
+        // Force scroll event to set initial active state
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>
