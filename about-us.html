@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>About Us | The Cafe on New Chardon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Yellowtail&family=Oswald:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .script-font {
+            font-family: 'Yellowtail', cursive;
+        }
+
+        /* Neon Logo Styles */
+        .neon-yellow-text {
+            color: #fef08a;
+            text-shadow: 0 0 2px #ca8a04;
+        }
+        
+        .neon-blue-border {
+            box-shadow: 0 -1px 4px #22d3ee, inset 0 1px 4px #22d3ee;
+            border-color: #67e8f9;
+        }
+
+        .neon-pink-border {
+            box-shadow: 0 1px 4px #f472b6, inset 0 -1px 4px #f472b6;
+            border-color: #f472b6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Header / Brand -->
+    <header class="bg-gray-900/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Compact Neon Logo -->
+            <a href="index.html" class="flex items-center group gap-3">
+                <div class="relative flex flex-col items-center justify-center h-10 w-20">
+                    <div class="absolute top-0 w-full h-full rounded-[50%] border-t-2 border-l border-r border-transparent border-t-cyan-400 neon-blue-border opacity-90 scale-y-75 translate-y-1"></div>
+                    <div class="absolute bottom-0 w-full h-full rounded-[50%] border-b-2 border-l border-r border-transparent border-b-pink-500 neon-pink-border opacity-90 scale-y-75 -translate-y-1"></div>
+                    <div class="z-10 text-center transform -rotate-2">
+                        <span class="script-font text-xl neon-yellow-text block leading-none">The Cafe</span>
+                    </div>
+                </div>
+                <div class="hidden sm:block leading-tight">
+                    <span class="block text-white font-bold uppercase text-sm tracking-wide">The Cafe</span>
+                    <span class="block text-gray-400 text-xs">on New Chardon</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-10">
+                <nav class="flex items-center gap-6 text-sm font-medium tracking-wide">
+                    <a href="about.html" class="text-gray-400 hover:text-white transition duration-300">About Us</a>
+                    <a href="stores.html" class="text-gray-400 hover:text-white transition duration-300">Our Stores</a>
+                    <span class="text-white font-bold cursor-default border-b-2 border-red-600 pb-1">Gallery</span>
+                    <a href="reservation.html" class="ml-2 bg-red-700 hover:bg-red-800 text-white px-5 py-2 rounded-full font-bold transition shadow-md flex items-center gap-2 transform hover:scale-105">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Reserve Table</span>
+                    </a>
+                </nav>
+                
+                <div class="h-5 w-px bg-gray-700"></div>
+
+                <div class="flex items-center gap-6">
+                    <button class="text-gray-900 bg-white hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-bold transition duration-300 shadow-md flex items-center gap-2">
+                        <i class="fas fa-user-circle text-lg"></i>
+                        <span>Login</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center gap-4">
+                <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Dropdown -->
+        <div id="mobile-nav" class="hidden md:hidden bg-gray-900 border-t border-gray-800 absolute w-full left-0 top-full shadow-2xl z-40">
+            <div class="flex flex-col p-6 space-y-6">
+                <a href="index.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Home</a>
+                <a href="about.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">About Us</a>
+                <a href="stores.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Our Stores</a>
+                <span class="text-left text-white font-bold text-lg border-l-4 border-red-600 pl-3">Gallery</span>
+                <a href="reservation.html" class="text-left text-red-500 hover:text-red-400 font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-calendar-check"></i> Reserve Table
+                </a>
+                <div class="border-t border-gray-800 pt-6 mt-2">
+                    <button class="text-center w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-200 transition block flex items-center justify-center gap-2">
+                        <i class="fas fa-user-circle"></i> Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <!-- Hero Banner -->
+        <div class="relative bg-gray-900 text-white py-24 px-6 overflow-hidden">
+             <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
+             <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+             <div class="relative max-w-4xl mx-auto text-center z-10">
+                 <span class="text-red-500 font-bold tracking-widest uppercase text-sm mb-4 block">Est. Always Good</span>
+                 <h1 class="text-5xl md:text-7xl font-bold brand-font mb-6">Our Story</h1>
+                 <p class="text-xl md:text-2xl text-gray-300 font-light max-w-2xl mx-auto">Small town feel in the big city. The West End's favorite breakfast & lunch spot.</p>
+             </div>
+        </div>
+
+        <!-- Content Section -->
+        <section class="py-20 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-6">
+                        <h2 class="text-4xl font-bold text-gray-900 brand-font">A West End Classic</h2>
+                        <div class="h-1 w-20 bg-yellow-400"></div>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            In a city of constantly changing trends and fleeting pop-up shops, <strong>The Cafe on New Chardon</strong> remains a steadfast classic. We consider ourselves a survivor—bringing you that nostalgic, unpretentious small-town deli experience right in the heart of Boston's bustling West End.
+                        </p>
+                        <p class="text-lg text-gray-600 leading-relaxed">
+                            We aren't trying to reinvent the wheel; we're just making sure it tastes delicious. Home of the legendary <strong>Steak Bomb</strong> and the best breakfast deals in town, we serve honest food at honest prices.
+                        </p>
+                        <div class="pt-4">
+                            <h3 class="font-bold text-xl text-gray-900 mb-3">Why Locals Love Us</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-center gap-3 text-gray-700"><i class="fas fa-check-circle text-red-600"></i> Generous "hearty" portions</li>
+                                <li class="flex items-center gap-3 text-gray-700"><i class="fas fa-check-circle text-red-600"></i> Affordable prices in downtown Boston</li>
+                                <li class="flex items-center gap-3 text-gray-700"><i class="fas fa-check-circle text-red-600"></i> Friendly staff who know your name</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
+                        <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-700" alt="Restaurant Interior">
+                        <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8">
+                            <p class="text-white italic">"It's the kind of place you see in movies and say, 'they don't make them like that anymore'."</p>
+                            <p class="text-yellow-400 text-sm font-bold mt-2">— Local Google Reviewer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats Section -->
+        <section class="bg-red-700 py-16 text-white">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl font-bold brand-font mb-2">1000+</div>
+                        <div class="text-red-200 text-sm uppercase tracking-wide">Eggs Cracked Daily</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold brand-font mb-2">4.8</div>
+                        <div class="text-red-200 text-sm uppercase tracking-wide">Star Rating</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold brand-font mb-2">100%</div>
+                        <div class="text-red-200 text-sm uppercase tracking-wide">Fresh Ingredients</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold brand-font mb-2">1</div>
+                        <div class="text-red-200 text-sm uppercase tracking-wide">Legendary Steak Bomb</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="brand-font text-2xl text-white mb-4">The Cafe on New Chardon</h2>
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+            <p class="text-xs text-gray-600">&copy; 2024 The Cafe on New Chardon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-nav');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
