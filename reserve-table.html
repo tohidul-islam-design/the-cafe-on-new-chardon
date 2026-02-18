@@ -242,7 +242,10 @@
                                 </div>
 
                                 <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 mb-4 h-96 overflow-y-auto menu-scroll" id="menu-container">
-                                    <!-- Menu items injected here -->
+                                    <div class="flex flex-col items-center justify-center h-full text-gray-400">
+                                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                                        <p class="text-sm">Loading menu...</p>
+                                    </div>
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-sm font-bold text-gray-700 mb-2">Special Requests / Custom Menu</label>
@@ -334,19 +337,24 @@
             steak: [
                 { id: 's1', name: "Plain Steak", price: 9.35 },
                 { id: 's2', name: "Cheese Steak", price: 10.45 },
-                { id: 's6', name: "Steak Bomb", price: 12.35 }
+                { id: 's6', name: "Steak Bomb", price: 12.35, popular: true }
             ],
             sandwiches: [
                 { id: 'd1', name: "Roasted Turkey", price: 8.90 },
                 { id: 'd3', name: "Ham & Cheese", price: 8.90 }
             ],
             grill: [
-                { id: 'g2', name: "Cheeseburger", price: 8.95 },
+                { id: 'g2', name: "Cheeseburger", price: 8.95, popular: true },
                 { id: 'g3', name: "Hot Dog", price: 4.55 }
+            ],
+            chicken: [
+                { id: 'c1', name: "Grilled Chicken", price: 9.75 },
+                { id: 'c2', name: "Buffalo Chicken", price: 9.75 },
+                { id: 'c5', name: "Chicken Cordon Bleu", price: 10.50 }
             ]
         };
 
-        const allItems = [...menuData.steak, ...menuData.sandwiches, ...menuData.grill];
+        const allItems = [...menuData.steak, ...menuData.sandwiches, ...menuData.grill, ...menuData.chicken];
 
         // --- Auth Simulation ---
         function simulateLogin() {
@@ -443,7 +451,8 @@
             
             if (isChecked) {
                 menuArea.classList.remove('hidden');
-                if (document.getElementById('menu-container').innerHTML.trim() === '') {
+                const container = document.getElementById('menu-container');
+                if (container.innerHTML.trim() === '' || container.querySelector('.fa-spinner')) {
                     renderMenu();
                 }
             } else {
@@ -457,10 +466,22 @@
             const query = searchInput ? searchInput.value : '';
             let html = '';
 
-            if (itemsToRender.length === 0) {
-                 html = '<div class="text-center text-gray-500 py-8 italic">No items found matching your search.</div>';
+            if (query === '') {
+                const popularItems = allItems.filter(item => item.popular);
+                if (popularItems.length > 0) {
+                    html += generateCategoryHTML("Popular Items", popularItems);
+                }
+                
+                html += generateCategoryHTML("Steak Subs", menuData.steak);
+                html += generateCategoryHTML("Sandwiches", menuData.sandwiches);
+                html += generateCategoryHTML("From the Grill", menuData.grill);
+                html += generateCategoryHTML("Chicken", menuData.chicken);
             } else {
-                html += generateCategoryHTML(query ? "Search Results" : "Popular Items", itemsToRender);
+                if (itemsToRender.length === 0) {
+                     html = '<div class="text-center text-gray-500 py-8 italic">No items found matching your search.</div>';
+                } else {
+                    html += generateCategoryHTML("Search Results", itemsToRender);
+                }
             }
 
             container.innerHTML = html;
