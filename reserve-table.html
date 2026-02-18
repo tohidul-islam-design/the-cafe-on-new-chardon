@@ -83,33 +83,28 @@
 
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center gap-10">
-                <nav class="flex items-center gap-8 text-sm font-medium tracking-wide">
-                    <span class="text-gray-400 hover:text-white transition duration-300 cursor-default">About Us</span>
-                    <span class="text-gray-400 hover:text-white transition duration-300 cursor-default">Our Stores</span>
-                    <a href="#reviews" class="text-gray-400 hover:text-white transition duration-300">Reviews</a>
-                    <a href="reservation.html" class="text-gray-400 hover:text-white transition duration-300">Reserve Table</a>
+                <nav class="flex items-center gap-6 text-sm font-medium tracking-wide">
+                    <a href="about.html" class="text-gray-400 hover:text-white transition duration-300">About Us</a>
+                    <a href="stores.html" class="text-gray-400 hover:text-white transition duration-300">Our Stores</a>
+                    <span class="text-white font-bold cursor-default border-b-2 border-red-600 pb-1">Gallery</span>
+                    <a href="reservation.html" class="ml-2 bg-red-700 hover:bg-red-800 text-white px-5 py-2 rounded-full font-bold transition shadow-md flex items-center gap-2 transform hover:scale-105">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Reserve Table</span>
+                    </a>
                 </nav>
                 
                 <div class="h-5 w-px bg-gray-700"></div>
 
                 <div class="flex items-center gap-6">
-                    <a href="#" class="text-gray-900 bg-white hover:bg-gray-200 px-6 py-2.5 rounded-full text-sm font-bold transition duration-300 shadow-md">Login</a>
-                    
-                    <!-- Cart Icon (Desktop) -->
-                    <button onclick="toggleSidebarCart()" class="relative p-2 text-gray-400 hover:text-white transition group">
-                        <i class="fas fa-shopping-bag text-xl group-hover:scale-110 transition-transform"></i>
-                        <span id="desktop-cart-count" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform scale-0 transition-transform duration-200 border border-gray-900 shadow-sm">0</span>
+                    <button class="text-gray-900 bg-white hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-bold transition duration-300 shadow-md flex items-center gap-2">
+                        <i class="fas fa-user-circle text-lg"></i>
+                        <span>Login</span>
                     </button>
                 </div>
             </div>
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center gap-4">
-                <!-- Cart Icon (Mobile) -->
-                <button onclick="toggleSidebarCart()" class="relative p-2 text-gray-300 hover:text-white transition">
-                    <i class="fas fa-shopping-bag text-xl"></i>
-                    <span id="mobile-cart-badge-header" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform scale-0 transition-transform duration-200">0</span>
-                </button>
                 <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
@@ -119,12 +114,17 @@
         <!-- Mobile Nav Dropdown -->
         <div id="mobile-nav" class="hidden md:hidden bg-gray-900 border-t border-gray-800 absolute w-full left-0 top-full shadow-2xl z-40">
             <div class="flex flex-col p-6 space-y-6">
-                <span onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg cursor-default">About Us</span>
-                <span onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg cursor-default">Our Stores</span>
-                <a href="#reviews" onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg">Reviews</a>
-                <a href="reservation.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Reserve Table</a>
+                <a href="index.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Home</a>
+                <a href="about.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">About Us</a>
+                <a href="stores.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Our Stores</a>
+                <span class="text-left text-white font-bold text-lg border-l-4 border-red-600 pl-3">Gallery</span>
+                <a href="reservation.html" class="text-left text-red-500 hover:text-red-400 font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-calendar-check"></i> Reserve Table
+                </a>
                 <div class="border-t border-gray-800 pt-6 mt-2">
-                    <a href="#" class="text-center w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-200 transition block">Login</a>
+                    <button class="text-center w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-200 transition block flex items-center justify-center gap-2">
+                        <i class="fas fa-user-circle"></i> Login
+                    </button>
                 </div>
             </div>
         </div>

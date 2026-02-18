@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gallery | The Cafe on New Chardon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Yellowtail&family=Oswald:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        h1, h2, h3, h4, .brand-font {
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .script-font {
+            font-family: 'Yellowtail', cursive;
+        }
+
+        /* Neon Logo Styles */
+        .neon-yellow-text {
+            color: #fef08a;
+            text-shadow: 0 0 2px #ca8a04;
+        }
+        
+        .neon-blue-border {
+            box-shadow: 0 -1px 4px #22d3ee, inset 0 1px 4px #22d3ee;
+            border-color: #67e8f9;
+        }
+
+        .neon-pink-border {
+            box-shadow: 0 1px 4px #f472b6, inset 0 -1px 4px #f472b6;
+            border-color: #f472b6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- Header / Brand -->
+    <header class="bg-gray-900/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-800">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Compact Neon Logo -->
+            <a href="index.html" class="flex items-center group gap-3">
+                <div class="relative flex flex-col items-center justify-center h-10 w-20">
+                    <div class="absolute top-0 w-full h-full rounded-[50%] border-t-2 border-l border-r border-transparent border-t-cyan-400 neon-blue-border opacity-90 scale-y-75 translate-y-1"></div>
+                    <div class="absolute bottom-0 w-full h-full rounded-[50%] border-b-2 border-l border-r border-transparent border-b-pink-500 neon-pink-border opacity-90 scale-y-75 -translate-y-1"></div>
+                    <div class="z-10 text-center transform -rotate-2">
+                        <span class="script-font text-xl neon-yellow-text block leading-none">The Cafe</span>
+                    </div>
+                </div>
+                <div class="hidden sm:block leading-tight">
+                    <span class="block text-white font-bold uppercase text-sm tracking-wide">The Cafe</span>
+                    <span class="block text-gray-400 text-xs">on New Chardon</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-10">
+                <nav class="flex items-center gap-6 text-sm font-medium tracking-wide">
+                    <a href="about.html" class="text-gray-400 hover:text-white transition duration-300">About Us</a>
+                    <a href="stores.html" class="text-gray-400 hover:text-white transition duration-300">Our Stores</a>
+                    <span class="text-white font-bold cursor-default border-b-2 border-red-600 pb-1">Gallery</span>
+                    <a href="reservation.html" class="ml-2 bg-red-700 hover:bg-red-800 text-white px-5 py-2 rounded-full font-bold transition shadow-md flex items-center gap-2 transform hover:scale-105">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Reserve Table</span>
+                    </a>
+                </nav>
+                
+                <div class="h-5 w-px bg-gray-700"></div>
+
+                <div class="flex items-center gap-6">
+                    <button class="text-gray-900 bg-white hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-bold transition duration-300 shadow-md flex items-center gap-2">
+                        <i class="fas fa-user-circle text-lg"></i>
+                        <span>Login</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden flex items-center gap-4">
+                <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Dropdown -->
+        <div id="mobile-nav" class="hidden md:hidden bg-gray-900 border-t border-gray-800 absolute w-full left-0 top-full shadow-2xl z-40">
+            <div class="flex flex-col p-6 space-y-6">
+                <a href="index.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Home</a>
+                <a href="about.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">About Us</a>
+                <a href="stores.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Our Stores</a>
+                <span class="text-left text-white font-bold text-lg border-l-4 border-red-600 pl-3">Gallery</span>
+                <a href="reservation.html" class="text-left text-red-500 hover:text-red-400 font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-calendar-check"></i> Reserve Table
+                </a>
+                <div class="border-t border-gray-800 pt-6 mt-2">
+                    <button class="text-center w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-200 transition block flex items-center justify-center gap-2">
+                        <i class="fas fa-user-circle"></i> Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-12 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 brand-font mb-4">Our Gallery</h1>
+                <p class="text-gray-600 text-lg">A glimpse into our kitchen, our space, and our community.</p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Item 1: Steak Bomb -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-80">
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=800&auto=format&fit=crop" alt="Steak Bomb" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold brand-font">Signature Steak Bomb</h3>
+                            <p class="text-sm text-gray-300">Loaded with peppers, onions & cheese.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Interior -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-80 lg:col-span-2">
+                    <img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?q=80&w=1200&auto=format&fit=crop" alt="Restaurant Interior" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold brand-font">Diner Atmosphere</h3>
+                            <p class="text-sm text-gray-300">Classic vibes in the heart of Boston.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Breakfast -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-80">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414395d8?q=80&w=800&auto=format&fit=crop" alt="Breakfast" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold brand-font">Hearty Breakfast</h3>
+                            <p class="text-sm text-gray-300">Served all day long.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: Burger -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-80">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop" alt="Burger" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold brand-font">Classic Cheeseburger</h3>
+                            <p class="text-sm text-gray-300">Fresh off the grill.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: Coffee -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-80">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=800&auto=format&fit=crop" alt="Coffee" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold brand-font">Fresh Coffee</h3>
+                            <p class="text-sm text-gray-300">The best way to start your morning.</p>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Item 6: Sandwich Prep -->
+                 <div class="group relative overflow-hidden rounded-2xl shadow-lg h-80 lg:col-span-2">
+                    <img src="https://images.unsplash.com/photo-1509722747041-616f39b57569?q=80&w=1200&auto=format&fit=crop" alt="Sandwich Prep" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold brand-font">Fresh Ingredients</h3>
+                            <p class="text-sm text-gray-300">Made to order, every time.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 7: Muffin -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-80">
+                    <img src="https://images.unsplash.com/photo-1558401391-7899b4bd5bbf?q=80&w=800&auto=format&fit=crop" alt="Muffins" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 text-white">
+                            <h3 class="text-xl font-bold brand-font">Freshly Baked</h3>
+                            <p class="text-sm text-gray-300">Muffins and pastries daily.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-16 text-center">
+                 <a href="index.html#steak-subs" class="bg-red-700 hover:bg-red-800 text-white font-bold py-4 px-10 rounded-full shadow-xl transition transform hover:scale-105 inline-block text-lg">
+                    Order Now
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="brand-font text-2xl text-white mb-4">The Cafe on New Chardon</h2>
+            <div class="flex justify-center gap-6 mb-6">
+                <a href="#" class="hover:text-white transition"><i class="fab fa-facebook fa-lg"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
+            <p class="text-xs text-gray-600">&copy; 2024 The Cafe on New Chardon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-nav');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

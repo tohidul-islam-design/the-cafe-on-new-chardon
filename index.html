@@ -76,22 +76,15 @@
             min-width: 100%;
             transition: opacity 0.5s ease-in-out;
         }
-        
-        /* Remove number input arrows */
-        input[type=number]::-webkit-inner-spin-button, 
-        input[type=number]::-webkit-outer-spin-button { 
-            -webkit-appearance: none; 
-            margin: 0; 
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 pb-24 md:pb-0">
 
     <!-- Header / Brand -->
     <header class="bg-gray-900/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-800">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Compact Neon Logo -->
-            <a href="#" class="flex items-center group gap-3">
+            <a href="index.html" class="flex items-center group gap-3">
                 <div class="relative flex flex-col items-center justify-center h-10 w-20">
                     <div class="absolute top-0 w-full h-full rounded-[50%] border-t-2 border-l border-r border-transparent border-t-cyan-400 neon-blue-border opacity-90 scale-y-75 translate-y-1"></div>
                     <div class="absolute bottom-0 w-full h-full rounded-[50%] border-b-2 border-l border-r border-transparent border-b-pink-500 neon-pink-border opacity-90 scale-y-75 -translate-y-1"></div>
@@ -107,33 +100,28 @@
 
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center gap-10">
-                <nav class="flex items-center gap-8 text-sm font-medium tracking-wide">
-                    <span class="text-gray-400 hover:text-white transition duration-300 cursor-default">About Us</span>
-                    <span class="text-gray-400 hover:text-white transition duration-300 cursor-default">Our Stores</span>
-                    <a href="#reviews" class="text-gray-400 hover:text-white transition duration-300">Reviews</a>
-                    <a href="reservation.html" class="text-gray-400 hover:text-white transition duration-300">Reserve Table</a>
+                <nav class="flex items-center gap-6 text-sm font-medium tracking-wide">
+                    <a href="about.html" class="text-gray-400 hover:text-white transition duration-300">About Us</a>
+                    <a href="stores.html" class="text-gray-400 hover:text-white transition duration-300">Our Stores</a>
+                    <a href="gallery.html" class="text-gray-400 hover:text-white transition duration-300">Gallery</a>
+                    <a href="reservation.html" class="ml-2 bg-red-700 hover:bg-red-800 text-white px-5 py-2 rounded-full font-bold transition shadow-md flex items-center gap-2 transform hover:scale-105">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Reserve Table</span>
+                    </a>
                 </nav>
                 
                 <div class="h-5 w-px bg-gray-700"></div>
 
                 <div class="flex items-center gap-6">
-                    <a href="#" class="text-gray-900 bg-white hover:bg-gray-200 px-6 py-2.5 rounded-full text-sm font-bold transition duration-300 shadow-md">Login</a>
-                    
-                    <!-- Cart Icon (Desktop) -->
-                    <button onclick="toggleSidebarCart()" class="relative p-2 text-gray-400 hover:text-white transition group">
-                        <i class="fas fa-shopping-bag text-xl group-hover:scale-110 transition-transform"></i>
-                        <span id="desktop-cart-count" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform scale-0 transition-transform duration-200 border border-gray-900 shadow-sm">0</span>
-                    </button>
+                    <a href="login.html" class="text-gray-900 bg-white hover:bg-gray-200 px-5 py-2 rounded-full text-sm font-bold transition duration-300 shadow-md flex items-center gap-2">
+                        <i class="fas fa-user-circle text-lg"></i>
+                        <span>Login</span>
+                    </a>
                 </div>
             </div>
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center gap-4">
-                <!-- Cart Icon (Mobile) -->
-                <button onclick="toggleSidebarCart()" class="relative p-2 text-gray-300 hover:text-white transition">
-                    <i class="fas fa-shopping-bag text-xl"></i>
-                    <span id="mobile-cart-badge-header" class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform scale-0 transition-transform duration-200">0</span>
-                </button>
                 <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white p-2">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
@@ -143,12 +131,16 @@
         <!-- Mobile Nav Dropdown -->
         <div id="mobile-nav" class="hidden md:hidden bg-gray-900 border-t border-gray-800 absolute w-full left-0 top-full shadow-2xl z-40">
             <div class="flex flex-col p-6 space-y-6">
-                <span onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg cursor-default">About Us</span>
-                <span onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg cursor-default">Our Stores</span>
-                <a href="#reviews" onclick="toggleMobileMenu()" class="text-left text-gray-300 hover:text-white font-medium text-lg">Reviews</a>
-                <a href="reservation.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Reserve Table</a>
+                <a href="about.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">About Us</a>
+                <a href="stores.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Our Stores</a>
+                <a href="gallery.html" class="text-left text-gray-300 hover:text-white font-medium text-lg">Gallery</a>
+                <a href="reservation.html" class="text-left text-red-500 hover:text-red-400 font-bold text-lg flex items-center gap-2">
+                    <i class="fas fa-calendar-check"></i> Reserve Table
+                </a>
                 <div class="border-t border-gray-800 pt-6 mt-2">
-                    <a href="#" class="text-center w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-200 transition block">Login</a>
+                    <a href="login.html" class="text-center w-full bg-white text-gray-900 font-bold py-3 rounded-xl hover:bg-gray-200 transition block flex items-center justify-center gap-2">
+                        <i class="fas fa-user-circle"></i> Login
+                    </a>
                 </div>
             </div>
         </div>
@@ -164,7 +156,7 @@
             <div class="carousel-slide relative min-w-full">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600891964092-4316c288032e?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
-                <div class="relative max-w-6xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
+                <div class="relative max-w-7xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
                     <span class="bg-red-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 animate-pulse shadow-lg">Boston's Best Kept Secret</span>
                     <h1 class="text-5xl md:text-7xl font-bold mb-4 brand-font leading-tight drop-shadow-lg">
                         The Legendary <br/><span class="text-yellow-400">Steak Bomb</span>
@@ -184,7 +176,7 @@
             <div class="carousel-slide relative min-w-full">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1525351484163-7529414395d8?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
-                <div class="relative max-w-6xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
+                <div class="relative max-w-7xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
                     <span class="bg-yellow-500 text-gray-900 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-lg">Start Your Morning Right</span>
                     <h1 class="text-5xl md:text-7xl font-bold mb-4 brand-font leading-tight drop-shadow-lg">
                         Bacon & Cheese <br/><span class="text-yellow-400">Omelet</span>
@@ -204,7 +196,7 @@
             <div class="carousel-slide relative min-w-full">
                 <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
-                <div class="relative max-w-6xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
+                <div class="relative max-w-7xl mx-auto px-6 h-full flex flex-col items-start justify-center pt-20">
                     <span class="bg-orange-600 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 shadow-lg">Hot Off The Grill</span>
                     <h1 class="text-5xl md:text-7xl font-bold mb-4 brand-font leading-tight drop-shadow-lg">
                         Classic <br/><span class="text-yellow-400">Cheeseburger</span>
@@ -238,8 +230,13 @@
     </div>
 
     <!-- Category Navigation (Sticky) -->
+<<<<<<< HEAD
     <nav id="category-nav" class="bg-white/95 backdrop-blur-sm border-b sticky top-[72px] z-40 shadow-sm overflow-x-auto hide-scrollbar">
         <div class="max-w-6xl mx-auto flex space-x-3 px-4 py-3 min-w-max">
+=======
+    <nav id="category-nav" class="bg-white/95 backdrop-blur-sm border-b sticky top-[74px] z-40 shadow-sm overflow-x-auto hide-scrollbar">
+        <div class="max-w-7xl mx-auto flex space-x-3 px-4 py-3 min-w-max">
+>>>>>>> 80a94f757552ae9b472c4f35726884f923d11a50
             <!-- Updated default active state for Steak Subs (Pill Style) -->
             <a href="#steak-subs" class="bg-gray-900 text-white shadow-md rounded-full px-5 py-2 font-medium whitespace-nowrap text-sm uppercase tracking-wide transition-all">Steak Subs</a>
             <a href="#sandwiches" class="text-gray-500 hover:bg-gray-100 hover:text-gray-900 rounded-full px-5 py-2 font-medium whitespace-nowrap text-sm uppercase tracking-wide transition-all">Sandwiches</a>
@@ -249,144 +246,155 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-10 space-y-16">
+    <!-- Updated max-width for better grid layout -->
+    <main class="max-w-7xl mx-auto px-4 py-10 space-y-16">
         
-        <div class="grid lg:grid-cols-3 gap-10">
-            
-            <!-- Menu Column -->
-            <div class="lg:col-span-2 space-y-16">
-                
-                <!-- Section: Steak Subs -->
-                <section id="steak-subs" class="scroll-mt-40">
-                    <div class="flex items-end gap-3 mb-6 border-b pb-4">
-                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Steak Subs</h2>
-                        <span class="text-gray-400 text-sm pb-1 font-medium">Hot & Fresh</span>
-                    </div>
-                    <!-- Updated container to flex col for list style -->
-                    <div class="flex flex-col gap-4" id="steak-list">
-                        <!-- Items injected via JS -->
-                    </div>
-                </section>
-
-                <!-- Section: Sandwiches -->
-                <section id="sandwiches" class="scroll-mt-40">
-                     <div class="flex items-end gap-3 mb-6 border-b pb-4">
-                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Sandwiches</h2>
-                         <span class="text-gray-400 text-sm pb-1 font-medium">Deli Classics</span>
-                    </div>
-                    <div class="flex flex-col gap-4" id="sandwich-list"></div>
-                </section>
-
-                <!-- Section: Grill -->
-                <section id="grill" class="scroll-mt-40">
-                     <div class="flex items-end gap-3 mb-6 border-b pb-4">
-                        <h2 class="text-3xl font-bold text-gray-900 brand-font">From the Grill</h2>
-                         <span class="text-gray-400 text-sm pb-1 font-medium">Burgers & More</span>
-                    </div>
-                    <div class="flex flex-col gap-4" id="grill-list"></div>
-                </section>
-
-                <!-- Section: Chicken -->
-                <section id="chicken" class="scroll-mt-40">
-                     <div class="flex items-end gap-3 mb-6 border-b pb-4">
-                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Chicken</h2>
-                        <span class="text-gray-400 text-sm pb-1 font-medium">Served on Bulkie or Onion Roll</span>
-                    </div>
-                    <div class="flex flex-col gap-4" id="chicken-list"></div>
-                </section>
-
+        <!-- Section: Steak Subs -->
+        <section id="steak-subs" class="scroll-mt-40">
+            <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                <h2 class="text-3xl font-bold text-gray-900 brand-font">Steak Subs</h2>
+                <span class="text-gray-400 text-sm pb-1 font-medium">Hot & Fresh</span>
             </div>
-
-            <!-- Desktop Cart Sidebar (Sticky) -->
-            <div class="hidden lg:block col-span-1">
-                <div class="sticky top-32 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                    <div class="bg-gray-900 p-5 text-white flex justify-between items-center">
-                        <h3 class="font-bold text-lg brand-font tracking-wide">Your Order</h3>
-                        <span class="bg-white/20 text-xs px-2 py-1 rounded">Pickup</span>
-                    </div>
-                    
-                    <div id="sidebar-cart-items" class="p-5 space-y-4 max-h-[calc(100vh-400px)] overflow-y-auto">
-                        <div class="text-center text-gray-400 py-10 flex flex-col items-center">
-                            <div class="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mb-3">
-                                <i class="fas fa-utensils text-gray-300 text-xl"></i>
-                            </div>
-                            <p class="text-sm">Your cart is empty</p>
-                            <p class="text-xs text-gray-400 mt-1">Start adding items!</p>
-                        </div>
-                    </div>
-                    
-                    <div id="desktop-cart-footer" class="p-5 bg-gray-50 border-t space-y-3 hidden">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Subtotal</span>
-                            <span class="font-bold" id="sidebar-subtotal">$0.00</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-gray-600">Tax (7%)</span>
-                            <span class="font-bold" id="sidebar-tax">$0.00</span>
-                        </div>
-                        <div class="flex justify-between text-xl font-bold pt-3 border-t border-gray-200">
-                            <span>Total</span>
-                            <span class="text-gray-900" id="sidebar-total">$0.00</span>
-                        </div>
-                        <button onclick="toggleSidebarCart()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-red-200 transition transform active:scale-95 mt-2">
-                            Checkout
-                        </button>
-                    </div>
-                </div>
+            <!-- Updated container to Grid Style -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="steak-list">
+                <!-- Items injected via JS -->
             </div>
+        </section>
 
-        </div>
+        <!-- Section: Sandwiches -->
+        <section id="sandwiches" class="scroll-mt-40">
+                <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                <h2 class="text-3xl font-bold text-gray-900 brand-font">Sandwiches</h2>
+                    <span class="text-gray-400 text-sm pb-1 font-medium">Deli Classics</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="sandwich-list"></div>
+        </section>
+
+        <!-- Section: Grill -->
+        <section id="grill" class="scroll-mt-40">
+                <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                <h2 class="text-3xl font-bold text-gray-900 brand-font">From the Grill</h2>
+                    <span class="text-gray-400 text-sm pb-1 font-medium">Burgers & More</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="grill-list"></div>
+        </section>
+
+        <!-- Section: Chicken -->
+        <section id="chicken" class="scroll-mt-40">
+                <div class="flex items-end gap-3 mb-6 border-b pb-4">
+                <h2 class="text-3xl font-bold text-gray-900 brand-font">Chicken</h2>
+                <span class="text-gray-400 text-sm pb-1 font-medium">Served on Bulkie or Onion Roll</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="chicken-list"></div>
+        </section>
 
         <!-- Reviews Section -->
-        <section id="reviews" class="py-16 border-t scroll-mt-20">
-            <div class="max-w-6xl mx-auto px-4">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
-                    <div>
-                        <h2 class="text-3xl font-bold text-gray-900 brand-font">Customer Reviews</h2>
-                        <div class="flex items-center gap-2 mt-2">
-                            <div class="flex text-yellow-400 text-sm">
+        <section id="reviews" class="py-24 bg-gray-50 border-t border-gray-100 scroll-mt-20 relative overflow-hidden">
+            <!-- Decorative Background Element -->
+            <div class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 bg-red-100 rounded-full opacity-20 blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-8 mb-16">
+                    <div class="max-w-2xl">
+                        <span class="text-red-600 font-bold tracking-widest uppercase text-xs mb-3 block">Community Love</span>
+                        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 brand-font mb-4 leading-tight">What Our Regulars Say</h2>
+                        <p class="text-gray-600 text-lg mb-6">Real stories from real customers. We take pride in serving our community with honest food.</p>
+                        
+                        <div class="inline-flex items-center gap-4 bg-white px-5 py-3 rounded-full shadow-sm border border-gray-200">
+                            <div class="flex text-yellow-400 text-lg">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                             </div>
-                            <span class="text-gray-500 text-sm font-medium">4.8 (120+ Reviews)</span>
+                            <div class="h-4 w-px bg-gray-300"></div>
+                            <span class="text-gray-900 font-bold">4.8</span>
+                            <span class="text-gray-500 text-sm">(120+ Verified Reviews)</span>
                         </div>
                     </div>
-                    <button onclick="openReviewModal()" class="bg-gray-900 hover:bg-gray-800 text-white font-medium py-3 px-8 rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
-                        <i class="fas fa-pen"></i> Write a Review
+                    <button onclick="openReviewModal()" class="bg-gray-900 hover:bg-gray-800 text-white font-medium py-4 px-8 rounded-xl shadow-lg transition transform hover:-translate-y-1 flex items-center gap-3 group">
+                        <i class="fas fa-pen-nib group-hover:rotate-12 transition-transform"></i>
+                        <span>Write a Review</span>
                     </button>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-6" id="reviews-grid">
-                    <!-- Static Reviews -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <div class="flex justify-between items-start mb-3">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-700 font-bold">J</div>
-                                <div>
-                                    <p class="font-bold text-sm">James D.</p>
-                                    <p class="text-xs text-gray-400">2 days ago</p>
-                                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="reviews-grid">
+                    <!-- Static Review 1 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 border border-gray-100 relative group flex flex-col h-full">
+                        <div class="absolute top-6 right-8 text-6xl text-gray-100 font-serif leading-none group-hover:text-red-50 transition-colors">"</div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex items-center justify-center text-green-700 font-bold text-lg">
+                                J
                             </div>
-                            <div class="flex text-yellow-400 text-xs">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-lg">James D.</h4>
+                                <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Regular Customer</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">"Best value in the city. The Steak Bomb is actually massive. I couldn't finish it in one sitting."</p>
+                        
+                        <div class="flex text-yellow-400 text-sm mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+
+                        <p class="text-gray-600 leading-relaxed text-base flex-1 relative z-10">
+                            Best value in the city. The Steak Bomb is actually massive. I couldn't finish it in one sitting. Definitely my new go-to lunch spot.
+                        </p>
+                        
+                        <div class="mt-6 pt-4 border-t border-gray-50 text-xs text-gray-400 font-medium">
+                            Posted 2 days ago
+                        </div>
                     </div>
 
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
-                        <div class="flex justify-between items-start mb-3">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold">S</div>
-                                <div>
-                                    <p class="font-bold text-sm">Sarah M.</p>
-                                    <p class="text-xs text-gray-400">1 week ago</p>
-                                </div>
+                    <!-- Static Review 2 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 border border-gray-100 relative group flex flex-col h-full">
+                        <div class="absolute top-6 right-8 text-6xl text-gray-100 font-serif leading-none group-hover:text-blue-50 transition-colors">"</div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center text-blue-700 font-bold text-lg">
+                                S
                             </div>
-                            <div class="flex text-yellow-400 text-xs">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-lg">Sarah M.</h4>
+                                <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Local Guide</p>
                             </div>
                         </div>
-                        <p class="text-gray-600 text-sm leading-relaxed">"Love the old school vibe. The staff is always super friendly even when it's busy."</p>
+                        
+                        <div class="flex text-yellow-400 text-sm mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+
+                        <p class="text-gray-600 leading-relaxed text-base flex-1 relative z-10">
+                            Love the old school vibe. The staff is always super friendly even when it's busy. It feels like a real neighborhood spot.
+                        </p>
+
+                         <div class="mt-6 pt-4 border-t border-gray-50 text-xs text-gray-400 font-medium">
+                            Posted 1 week ago
+                        </div>
+                    </div>
+
+                    <!-- Static Review 3 -->
+                    <div class="bg-white p-8 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 border border-gray-100 relative group flex flex-col h-full hidden lg:flex">
+                        <div class="absolute top-6 right-8 text-6xl text-gray-100 font-serif leading-none group-hover:text-yellow-50 transition-colors">"</div>
+                        
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-orange-100 to-orange-200 rounded-full flex items-center justify-center text-orange-700 font-bold text-lg">
+                                M
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-900 text-lg">Mike R.</h4>
+                                <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">Foodie</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex text-yellow-400 text-sm mb-4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+
+                        <p class="text-gray-600 leading-relaxed text-base flex-1 relative z-10">
+                            The breakfast sandwich is unbeatable for the price. Fast service, hot coffee, and great food. What else do you need?
+                        </p>
+
+                         <div class="mt-6 pt-4 border-t border-gray-50 text-xs text-gray-400 font-medium">
+                            Posted 3 weeks ago
+                        </div>
                     </div>
                 </div>
             </div>
@@ -405,6 +413,14 @@
             <p class="text-xs text-gray-600">&copy; 2024 The Cafe on New Chardon. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Floating Cart Button (Desktop/Tablet) -->
+    <button onclick="toggleSidebarCart()" class="fixed top-1/2 right-4 transform -translate-y-1/2 bg-gray-900 hover:bg-red-700 text-white w-16 h-16 rounded-full shadow-2xl z-50 hidden md:flex items-center justify-center transition-all duration-300 hover:scale-110 group border-4 border-white">
+        <div class="relative">
+            <i class="fas fa-shopping-bag text-2xl group-hover:animate-bounce"></i>
+            <span id="floating-cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-gray-900">0</span>
+        </div>
+    </button>
 
     <!-- Mobile Sticky Cart Bar -->
     <div id="mobile-cart-bar" class="fixed bottom-0 left-0 w-full bg-white border-t shadow-[0_-4px_20px_rgba(0,0,0,0.1)] p-4 md:hidden z-50 transform translate-y-full transition-transform duration-300 safe-bottom">
@@ -475,11 +491,44 @@
 
             <!-- Footer (Pay Button) - Hidden when empty -->
             <div id="cart-footer" class="p-5 border-t bg-white safe-bottom shadow-[0_-4px_20px_rgba(0,0,0,0.05)] hidden">
-                 <div class="flex justify-between text-xl font-bold mb-4 items-end">
+                 <div class="flex justify-between text-xl font-bold mb-6 items-end">
                     <span class="text-sm font-medium text-gray-500">Total</span>
                     <span class="text-2xl text-gray-900" id="cart-total">$0.00</span>
                 </div>
-                <button onclick="completeOrder()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 flex justify-center items-center gap-2">
+
+                <!-- Payment Method Section (Moved Here) -->
+                <div class="mb-6">
+                    <p class="text-sm text-gray-900 font-bold mb-3 flex items-center gap-2">
+                        <i class="fas fa-wallet text-red-500"></i> Payment Method
+                    </p>
+                    <div class="space-y-3">
+                        <label class="flex items-center justify-between p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-red-200 hover:bg-red-50 transition bg-white group">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" value="card" checked class="text-red-600 focus:ring-red-500 accent-red-600" onchange="updatePayButton()">
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Credit / Debit Card</span>
+                            </div>
+                            <i class="fas fa-credit-card text-gray-400 group-hover:text-red-500 transition"></i>
+                        </label>
+                        
+                        <label class="flex items-center justify-between p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-red-200 hover:bg-red-50 transition bg-white group">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" value="apple" class="text-red-600 focus:ring-red-500 accent-red-600" onchange="updatePayButton()">
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Apple Pay</span>
+                            </div>
+                            <i class="fab fa-apple text-gray-400 group-hover:text-red-500 transition"></i>
+                        </label>
+
+                        <label class="flex items-center justify-between p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-red-200 hover:bg-red-50 transition bg-white group">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" value="counter" class="text-red-600 focus:ring-red-500 accent-red-600" onchange="updatePayButton()">
+                                <span class="text-sm font-medium text-gray-700 group-hover:text-gray-900">Pay at Counter</span>
+                            </div>
+                            <i class="fas fa-store text-gray-400 group-hover:text-red-500 transition"></i>
+                        </label>
+                    </div>
+                </div>
+
+                <button id="sidebar-checkout-btn" onclick="completeOrder()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 flex justify-center items-center gap-2">
                     <span>Pay & Place Order</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>
@@ -540,6 +589,83 @@
             <button onclick="closeSuccessModal()" class="w-full bg-gray-900 text-white font-bold py-3 rounded-xl hover:bg-gray-800 transition">
                 Back to Menu
             </button>
+        </div>
+    </div>
+
+    <!-- Payment & Tip Modal -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/70 z-[70] hidden flex justify-end items-stretch backdrop-blur-sm opacity-0 transition-opacity duration-300">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl overflow-y-auto transform translate-x-full transition-transform duration-300" id="payment-modal-content">
+            <div class="bg-gray-900 p-4 flex justify-between items-center text-white sticky top-0 z-10">
+                <h3 class="font-bold text-lg">Checkout</h3>
+                <button onclick="closePaymentModal()" class="text-gray-400 hover:text-white"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="p-6">
+                <!-- Order Summary -->
+                <div class="mb-6">
+                    <p class="text-sm text-gray-500 uppercase tracking-wide font-bold mb-2">Order Summary</p>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Subtotal</span>
+                        <span id="pay-subtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span>Tax (7%)</span>
+                        <span id="pay-tax">$0.00</span>
+                    </div>
+                </div>
+
+                <!-- Tipping Section -->
+                <div class="mb-8">
+                    <p class="text-sm text-gray-900 font-bold mb-3 flex items-center gap-2">
+                        <i class="fas fa-heart text-red-500"></i> Add a Tip for the Staff
+                    </p>
+                    <div class="grid grid-cols-4 gap-2 mb-4">
+                        <button onclick="setTip(0)" class="tip-btn border rounded-lg py-2 text-sm font-medium hover:bg-gray-50 transition" data-tip="0">None</button>
+                        <button onclick="setTip(15)" class="tip-btn border rounded-lg py-2 text-sm font-medium hover:bg-gray-50 transition bg-gray-900 text-white border-gray-900" data-tip="15">15%</button>
+                        <button onclick="setTip(18)" class="tip-btn border rounded-lg py-2 text-sm font-medium hover:bg-gray-50 transition" data-tip="18">18%</button>
+                        <button onclick="setTip(20)" class="tip-btn border rounded-lg py-2 text-sm font-medium hover:bg-gray-50 transition" data-tip="20">20%</button>
+                    </div>
+                    <div class="flex justify-between text-sm text-gray-600 px-1">
+                        <span>Tip Amount:</span>
+                        <span id="pay-tip-amount" class="font-medium">$0.00</span>
+                    </div>
+                </div>
+
+                <!-- Grand Total -->
+                <div class="flex justify-between items-center pt-4 border-t border-gray-200 mb-6">
+                    <span class="text-lg font-bold text-gray-900">Total to Pay</span>
+                    <span class="text-2xl font-bold text-red-600" id="pay-total">$0.00</span>
+                </div>
+
+                <button onclick="completeOrder()" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 flex justify-center items-center gap-2">
+                    <i class="fas fa-lock text-sm"></i> Pay & Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Food Details Modal -->
+    <div id="food-details-modal" class="fixed inset-0 bg-black/80 z-[80] hidden flex items-center justify-center p-4 backdrop-blur-sm" onclick="if(event.target === this) closeFoodDetails()">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform scale-100 animate-pop relative">
+            <div class="relative h-64 bg-gray-100">
+                <img id="modal-food-image" src="" alt="Food" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <button onclick="closeFoodDetails()" class="absolute top-4 right-4 bg-black/40 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center backdrop-blur-md transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-2">
+                    <h2 id="modal-food-name" class="text-3xl font-bold text-gray-900 brand-font leading-tight"></h2>
+                    <span id="modal-food-price" class="text-xl font-bold text-red-600 bg-red-50 px-3 py-1 rounded-lg"></span>
+                </div>
+                <p id="modal-food-desc" class="text-gray-600 mb-8 leading-relaxed text-sm"></p>
+                
+                <button id="modal-add-btn" class="w-full bg-gray-900 hover:bg-red-700 text-white font-bold py-4 rounded-xl shadow-lg transition transform active:scale-95 flex justify-center items-center gap-2">
+                    <span>Add to Order</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -611,30 +737,22 @@
 
         function renderSection(elementId, items) {
             const container = document.getElementById(elementId);
-            container.className = "flex flex-col gap-4";
+            container.className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6";
             
             container.innerHTML = items.map(item => `
-                <div id="card-${item.id}" class="bg-white p-3 sm:p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col sm:flex-row gap-4 hover:shadow-md transition-all duration-300 group">
-                    <div class="relative w-full sm:w-28 h-40 sm:h-28 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transform group-hover:scale-105 transition duration-500">
-                        ${item.popular ? '<span class="absolute top-2 left-2 text-[10px] bg-yellow-400 text-yellow-900 font-bold px-2 py-0.5 rounded shadow-sm uppercase tracking-wide">Popular</span>' : ''}
+                <div id="card-${item.id}" class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col h-full cursor-pointer" onclick="openFoodDetails('${item.id}')">
+                    <div class="relative h-48 overflow-hidden bg-gray-100">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-500">
+                        ${item.popular ? '<span class="absolute top-3 left-3 text-[10px] bg-yellow-400 text-yellow-900 font-bold px-2 py-1 rounded shadow-sm uppercase tracking-wide">Popular</span>' : ''}
                     </div>
-                    
-                    <div class="flex-1 flex flex-col justify-between">
-                        <div class="flex justify-between items-start gap-4">
-                            <div>
-                                <h3 class="font-bold text-gray-900 text-lg leading-tight group-hover:text-red-700 transition-colors">${item.name}</h3>
-                                ${item.desc ? `<p class="text-sm text-gray-500 mt-1 leading-relaxed line-clamp-2">${item.desc}</p>` : ''}
-                            </div>
-                            <span class="hidden sm:block font-bold text-lg text-gray-900">$${item.price.toFixed(2)}</span>
+                    <div class="p-5 flex flex-col flex-1">
+                        <div class="flex-1 mb-4">
+                            <h3 class="font-bold text-gray-900 text-xl leading-tight mb-2 group-hover:text-red-700 transition-colors">${item.name}</h3>
+                            ${item.desc ? `<p class="text-sm text-gray-500 leading-relaxed line-clamp-3">${item.desc}</p>` : ''}
                         </div>
-                        
-                        <div class="flex justify-between items-center mt-3 sm:mt-auto">
-                            <span class="sm:hidden font-bold text-lg text-gray-900">$${item.price.toFixed(2)}</span>
-                            
-                            <div class="hidden sm:block flex-1"></div>
-
-                            <button onclick="addToCart('${item.id}')" class="bg-gray-900 hover:bg-red-700 text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all duration-300 active:scale-95 shadow-md group-hover:shadow-lg">
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-50">
+                            <span class="font-bold text-xl text-gray-900">$${item.price.toFixed(2)}</span>
+                            <button onclick="event.stopPropagation(); addToCart('${item.id}')" class="bg-gray-900 hover:bg-red-700 text-white px-4 py-2 rounded-full flex items-center gap-2 transition-all duration-300 active:scale-95 shadow-md">
                                 <span class="text-sm font-bold">Add</span>
                                 <i class="fas fa-plus text-xs"></i>
                             </button>
@@ -642,6 +760,33 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        // --- Food Details Modal Logic ---
+        function openFoodDetails(id) {
+            const item = allItems.find(i => i.id === id);
+            if (!item) return;
+
+            // Populate Modal
+            document.getElementById('modal-food-image').src = item.image;
+            document.getElementById('modal-food-name').innerText = item.name;
+            document.getElementById('modal-food-desc').innerText = item.desc || "A delicious classic from The Cafe on New Chardon. Freshly prepared to order.";
+            document.getElementById('modal-food-price').innerText = `$${item.price.toFixed(2)}`;
+            
+            // Set Add Button Action
+            const addBtn = document.getElementById('modal-add-btn');
+            addBtn.onclick = function() {
+                addToCart(id);
+                closeFoodDetails();
+            };
+
+            // Show Modal
+            const modal = document.getElementById('food-details-modal');
+            modal.classList.remove('hidden');
+        }
+
+        function closeFoodDetails() {
+            document.getElementById('food-details-modal').classList.add('hidden');
         }
 
         // --- Carousel Logic ---
@@ -795,14 +940,18 @@
             }
 
             // Update Badges
-            const badges = [document.getElementById('desktop-cart-count'), document.getElementById('mobile-cart-count'), document.getElementById('mobile-cart-badge-header')];
+            // Only update badges that exist on the page
+            const mobileBadge = document.getElementById('mobile-cart-count');
+            const mobileHeaderBadge = document.getElementById('mobile-cart-badge-header');
+            const floatingBadge = document.getElementById('floating-cart-count');
+            
+            const badges = [mobileBadge, mobileHeaderBadge, floatingBadge].filter(Boolean);
+            
             badges.forEach(b => {
-                if(b) {
-                    b.innerText = totalQty;
-                    b.classList.remove('scale-0');
-                    b.classList.add('animate-pop');
-                    setTimeout(() => b.classList.remove('animate-pop'), 200);
-                }
+                b.innerText = totalQty;
+                b.classList.remove('scale-0');
+                b.classList.add('animate-pop');
+                setTimeout(() => b.classList.remove('animate-pop'), 200);
             });
 
             // Update Sticky Sidebar UI (Desktop only)
@@ -905,6 +1054,17 @@
             if(document.getElementById('cart-total')) document.getElementById('cart-total').innerText = `$${total.toFixed(2)}`;
         }
 
+        function updatePayButton() {
+            const method = document.querySelector('input[name="payment-method"]:checked').value;
+            const btnSpan = document.querySelector('#sidebar-checkout-btn span');
+            
+            if (method === 'counter') {
+                btnSpan.innerText = 'Place Order';
+            } else {
+                btnSpan.innerText = 'Pay & Place Order';
+            }
+        }
+
         function completeOrder() {
             if (Object.keys(cart).length === 0) return;
             toggleSidebarCart(); // Close sidebar
@@ -945,21 +1105,32 @@
             
             const grid = document.getElementById('reviews-grid');
             const newCard = document.createElement('div');
-            newCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-gray-100 border-l-4 border-l-green-500 animate-pop";
+            // Updated class to match new UI
+            newCard.className = "bg-white p-8 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 border border-gray-100 relative group flex flex-col h-full animate-pop";
+            
+            // Updated HTML to match new UI
             newCard.innerHTML = `
-                <div class="flex justify-between items-start mb-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center text-white font-bold">${name.charAt(0)}</div>
-                        <div>
-                            <p class="font-bold text-sm">${name}</p>
-                            <p class="text-xs text-gray-400">Just now</p>
-                        </div>
+                <div class="absolute top-6 right-8 text-6xl text-gray-100 font-serif leading-none group-hover:text-gray-200 transition-colors">"</div>
+                
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        ${name.charAt(0)}
                     </div>
-                    <div class="flex text-yellow-400 text-xs">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-lg">${name}</h4>
+                        <p class="text-xs text-gray-500 font-medium uppercase tracking-wide">New Customer</p>
                     </div>
                 </div>
-                <p class="text-gray-600 text-sm leading-relaxed">"${review}"</p>
+                
+                <div class="flex text-yellow-400 text-sm mb-4">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+
+                <p class="text-gray-600 leading-relaxed text-base flex-1 relative z-10">"${review}"</p>
+                
+                <div class="mt-6 pt-4 border-t border-gray-50 text-xs text-gray-400 font-medium">
+                    Posted just now
+                </div>
             `;
             grid.prepend(newCard);
 
